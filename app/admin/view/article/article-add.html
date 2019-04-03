@@ -11,7 +11,7 @@
                         标题
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" id="title" name="title" value="Alexa" required lay-verify="title" autocomplete="off" class="layui-input">
+                        <input type="text" id="title" name="title" value="" required lay-verify="title" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -19,7 +19,7 @@
                         作者
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="author" value="Ferre" autocomplete="off" class="layui-input">
+                        <input type="text" name="author" value="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -31,7 +31,7 @@
                             <select lay-verify="required" name="cate">
                                 <option>
                                 </option>
-                                <optgroup label="Alexa相关">
+                                <optgroup label="选择类别">
                                 {volist name="cate" id="ca"}
                                 	<option value="{$ca.id}" {if condition="$ca['catename'] eq 'Alexa'"}selected=""{/if}>{$ca.catename}</option>
                                 {/volist}
@@ -46,7 +46,7 @@
                         关键词
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="keywords" value="Alexa,Ferre" autocomplete="off" class="layui-input">
+                        <input type="text" name="keywords" value="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -54,19 +54,8 @@
                         描述
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="desc" value="About Alexa" autocomplete="off" class="layui-input">
+                        <input type="text" name="desc" value="" autocomplete="off" class="layui-input">
                     </div>
-                </div>
-                
-                <div class="layui-form-item">
-                    <label for="thumb" class="layui-form-label">
-                        缩略图
-                    </label>
-                    <div class="layui-input-block">
-				            <input type="file" id="uploadForm" name="thumb" class="layui-btn layui-btn-primary"/> 
-				            <!-- <input type="button" value="上传" class="layui-btn" onclick="doUpload();">   -->
-					</div>
-                    
                 </div>
                 
                 <div class="layui-form-item">
@@ -74,7 +63,7 @@
                        排序
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="order" value="6" autocomplete="off" class="layui-input">
+                        <input type="text" name="order" value="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 
@@ -83,7 +72,7 @@
                         浏览
                     </label>
                     <div class="layui-input-block">
-                        <input type="text" name="see" value="12" autocomplete="off" class="layui-input">
+                        <input type="text" name="see" value="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 
