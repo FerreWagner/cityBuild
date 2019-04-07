@@ -5,84 +5,51 @@
 
 <body>
         <div class="x-body">
-            <form class="layui-form layui-form-pane" id="aform" action="{:url('admin/article/add')}" method="post" enctype="multipart/form-data">
+            <form class="layui-form layui-form-pane" id="aform" action="{:url('admin/study/add')}" method="post" enctype="multipart/form-data">
                 <div class="layui-form-item">
-                    <label for="L_title" class="layui-form-label">
-                        标题
-                    </label>
-                    <div class="layui-input-block">
-                        <input type="text" id="title" name="title" value="" required lay-verify="title" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label for="author" class="layui-form-label">
-                        作者
-                    </label>
-                    <div class="layui-input-block">
-                        <input type="text" name="author" value="" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label">专业</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="major" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">
-                            所在类别
+                            层次
                         </label>
                         <div class="layui-input-block">
-                            <select lay-verify="required" name="cate">
-                                <option>
-                                </option>
-                                <optgroup label="选择类别">
-                                {volist name="cate" id="ca"}
-                                	<option value="{$ca.id}" {if condition="$ca['catename'] eq 'Alexa'"}selected=""{/if}>{$ca.catename}</option>
-                                {/volist}
-                                </optgroup>
+                            <select name="layer" lay-verify="">
+                                <option value="专升本" selected>专升本</option>
+                                <option value="高起专">高起专</option>
+                                <option value="高起本">高起本</option>
                             </select>
                         </div>
                     </div>
                 </div>
-
                 <div class="layui-form-item">
-                    <label for="keywords" class="layui-form-label">
-                        关键词
-                    </label>
-                    <div class="layui-input-block">
-                        <input type="text" name="keywords" value="" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label">学习形式</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="type" value="业余函授" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label for="desc" class="layui-form-label">
-                        描述
-                    </label>
-                    <div class="layui-input-block">
-                        <input type="text" name="desc" value="" autocomplete="off" class="layui-input">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">
+                            学制
+                        </label>
+                        <div class="layui-input-block">
+                            <select name="esystem" lay-verify="">
+                                <option value="3年" selected>3年</option>
+                                <option value="5年">5年</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                
                 <div class="layui-form-item">
-                    <label for="order" class="layui-form-label">
-                       排序
-                    </label>
-                    <div class="layui-input-block">
-                        <input type="text" name="order" value="" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label">学费/年</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="money" value="1800元" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
                     </div>
-                </div>
-                
-                <div class="layui-form-item">
-                    <label for="see" class="layui-form-label">
-                        浏览
-                    </label>
-                    <div class="layui-input-block">
-                        <input type="text" name="see" value="" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                
-                <div class="layui-form-item layui-form-text">
-                    <div class="layui-input-block">
-                        <textarea id="content" name="content"></textarea>
-                    </div>
-                    <label for="content" class="layui-form-label" style="top: -2px;">
-                       内容
-                    </label>
                 </div>
                 
                 <div class="layui-form-item">

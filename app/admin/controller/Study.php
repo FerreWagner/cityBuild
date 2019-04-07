@@ -4,8 +4,7 @@ namespace app\admin\controller;
 
 use think\Request;
 use app\admin\common\Base;
-use think\Loader;
-use app\admin\model\Article as ArticleModel;
+use app\admin\model\Study as StudyModel;
 use think\Validate;
 
 class Study extends Base
@@ -48,67 +47,18 @@ class Study extends Base
             $token      = Validate::token('__token__','',['__token__'=>input('param.__token__')]);    //CSRF validate
             if (!$token) $this->error('CSRF ATTACK.');
 
-            $data = input('post.');
-            $data['time'] = time();    //写入时间戳
-            $validate = Loader::validate('Article');
-            if(!$validate->scene('add')->check($data)){
-                $this->error($validate->getError());
-            }
-            $article = new ArticleModel();
-            if($article->allowField(true)->save($data)){
-                $this->redirect('admin/article/index');
+            $data  = input('post.');
+            $study = new StudyModel();
+            if($study->allowField(true)->save($data)){
+                $this->redirect('admin/study/add');
             }else{
                 $this->error('添加失败');
             }
-            return;
         }
         //page
-        $cate = db('category')->field(['id', 'catename'])->order('sort', 'asc')->select();
-        $this->view->assign('cate', $cate);
-        return $this->view->fetch('article-add');
+        return $this->view->fetch('study-add');
     }
     
-        //七牛test
-//     public function upload(Request $request)
-//     {
-        
-//         if ($request->isPost()){
-            
-//             $file = $request->file('thumb');
-//             //本地路径
-//             $filePath = $file->getRealPath();
-//             //获取后缀
-//             $ext = pathinfo($file->getInfo('name'), PATHINFO_EXTENSION);
-//             //上传到七牛后保存的文件名(加盐)
-//             $key = config('salt.password_salt').substr(md5($file->getRealPath()) , 0, 5). date('YmdHis') . rand(0, 9999) . '.' . $ext;
-            
-//             $ak = config('qiniu.ak');
-//             $sk = config('qiniu.sk');
-            
-//             //构建鉴权对象
-//             $auth = new Auth($ak, $sk);
-//             //要上传的空间
-//             $bucket = config('qiniu.bucket');
-//             $domain = config('qiniu.domain');
-//             $token = $auth->uploadToken($bucket);
-            
-//             //初始化uploadmanager对象并进行文件的上传
-//             $uploadMgr = new UploadManager();
-            
-//             //调用uploadmanager的putfile方法进行文件的上传
-//             list($ret, $err) = $uploadMgr->putFile($token, $key, $filePath);
-            
-//             if ($err !== null){
-//                 return ['err' => 1, 'msg' => $err, 'data' => ''];
-//             }else {
-//                 //返回图片的完整URL
-//                 return ['err' => 0, 'msg' => '上传完成', 'data' => ($domain.'/'.$ret['key'])];
-//             }
-            
-//         }
-        
-//     }
-
 
     /**
      * 显示编辑资源表单页.
