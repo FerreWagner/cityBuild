@@ -4,7 +4,7 @@
         <div class="x-nav">
             <span class="layui-breadcrumb">
               <a><cite>首页</cite></a>
-              <a><cite>文章管理</cite></a>
+              <a><cite>统考信息</cite></a>
               <a><cite>列表</cite></a>
             </span>
             <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"  href="javascript:location.replace(location.href);" title="刷新"><i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -13,15 +13,8 @@
             <form class="layui-form x-center" action="" method="post" style="width:800px">
                 <div class="layui-form-pane" style="margin-top: 15px;">
                   <div class="layui-form-item">
-                    <label class="layui-form-label">日期范围</label>
                     <div class="layui-input-inline">
-                      <input class="layui-input" placeholder="开始日" name="start" id="LAY_demorange_s">
-                    </div>
-                    <div class="layui-input-inline">
-                      <input class="layui-input" placeholder="截止日" name="end" id="LAY_demorange_e">
-                    </div>
-                    <div class="layui-input-inline">
-                      <input type="text" name="title"  placeholder="标题" autocomplete="off" class="layui-input">
+                      <input type="text" name="title"  placeholder="关键字搜索" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
                         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -29,7 +22,7 @@
                   </div>
                 </div>
             </form>
-            <xblock><a href="{:url('admin/article/add')}"><button class="layui-btn"><i class="layui-icon">&#xe608;</i>添加</button></a><span class="x-right" style="line-height:40px">共有数据：{$count} 条</span></xblock>
+            <xblock><a href="{:url('admin/study/add')}"><button class="layui-btn"><i class="layui-icon">&#xe608;</i>添加</button></a><span class="x-right" style="line-height:40px">共有数据：{$count} 条</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
@@ -37,19 +30,19 @@
                             ID
                         </th>
                         <th>
-                            标题
+                            专业
                         </th>
                         <th>
-                            分类
+                            层次
                         </th>
                         <th>
-                            作者
+                            学习形式
                         </th>
                         <th>
-                            创建时间
+                            学制
                         </th>
                         <th>
-                            浏览次数
+                            学费/年
                         </th>
                         <th>
                             操作
@@ -64,20 +57,20 @@
                             </td>
                             <td>
                                 <u style="cursor:pointer" onclick="question_show()">
-                                    {$art.title}
+                                    {$art.major}
                                 </u>
                             </td>
                             <td >
-                                {$art.catename}
+                                {$art.layer}
                             </td>
                             <td >
-                                {$art.author}
+                                {$art.type}
                             </td>
                             <td >
-                                {$art.time|date="Y-m-d H:i:s",###}
+                                {$art.esystem}
                             </td>
                             <td >
-                                {$art.see}
+                                {$art.money}
                             </td>
                             <td class="td-manage">
                                 <a title="编辑" href="{:url('admin/article/edit', ['id' => $art['id']])}" class="ml-5" style="text-decoration:none">
