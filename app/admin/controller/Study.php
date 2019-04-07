@@ -21,9 +21,9 @@ class Study extends Base
         //search function
         if ($request->isPost()){
             $search  = $request->param();
-            $article = db('study')->order('id desc')->where('major|layer|type|esystem|money', 'like', '%'.$search['title'].'%')->paginate(config('conf.page'));
+            $article = db('study')->order('id desc')->where(['del' => 0])->where('major|layer|type|esystem|money', 'like', '%'.$search['title'].'%')->paginate(config('conf.page'));
         }else{
-            $article = db('study')->order('id desc')->paginate(config('conf.page'));
+            $article = db('study')->order('id desc')->where(['del' => 0])->paginate(config('conf.page'));
         }
         //list
         $this->view->assign([
@@ -104,10 +104,11 @@ class Study extends Base
      */
     public function delete($id)
     {
-        if(ArticleModel::destroy($id)){
-            $this->success('删除文章成功！',url('admin/article/index'));
+        $res = StudyModel::delStatus($id);
+        if ($res){
+           $this->success('删除成功');
         }else{
-            $this->error('删除文章失败！');
+            $this->error('删除失败');
         }
     }
     

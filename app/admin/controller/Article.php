@@ -26,7 +26,7 @@ class Article extends Base
      */
     public function index(Request $request)
     {
-        $article = db('article')->field('a.*,b.catename')->alias('a')->join('city_category b','a.cate=b.id')->order('a.id desc')->paginate(config('conf.page'));
+        $article = db('article')->field('a.*,b.catename')->alias('a')->join('city_category b','a.cate=b.id')->where(['del' => 0])->order('a.id desc')->paginate(config('conf.page'));
         $count   = db('article')->count();
         //search function
         if ($request->isPost()){
@@ -34,12 +34,14 @@ class Article extends Base
             
             if (empty($search['start']) || empty($search['end'])){
                 $article = db('article')->field('a.*,b.catename')->alias('a')->join('city_category b','a.cate=b.id')->order('a.id desc')
-                                        ->where('title', 'like', '%'.$search['title'].'%')->paginate(config('conf.page'));
+                    ->where(['del' => 0])
+                    ->where('title', 'like', '%'.$search['title'].'%')->paginate(config('conf.page'));
                 
             }else {
                 $article = db('article')->field('a.*,b.catename')->alias('a')->join('city_category b','a.cate=b.id')->order('a.id desc')
-                                        ->where('time', 'between', [strtotime($search['start']), strtotime($search['end'])])
-                                        ->where('title', 'like', '%'.$search['title'].'%')->paginate(config('conf.page'));
+                    ->where(['del' => 0])
+                    ->where('time', 'between', [strtotime($search['start']), strtotime($search['end'])])
+                    ->where('title', 'like', '%'.$search['title'].'%')->paginate(config('conf.page'));
                 
             }
         }
@@ -172,7 +174,8 @@ class Article extends Base
      */
     public function delete($id)
     {
-        if(ArticleModel::destroy($id)){
+        $res = ArticleModel::update(['del' => 1, 'id' => $id]);
+        if ($res){
             $this->success('删除文章成功！',url('admin/article/index'));
         }else{
             $this->error('删除文章失败！');
