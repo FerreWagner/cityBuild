@@ -107,5 +107,29 @@ class System extends Base
         $del = db('link')->delete(input('id'));
         $del ? $this->redirect('admin/system/linklist') : $this->error('Link Delete Error,Dear');
     }
+
+    public function setSysDataXml()
+    {
+        //文件处理
+        $file_name = 'system.xml';
+        if (!file_exists($file_name)){
+            $xml_prepare = '<?xml version="1.0" encoding="UTF-8"?><system></system>';
+            $file_return = file_put_contents($file_name, $xml_prepare);
+
+            if (!$file_return) $this->error('XML system file write error.');
+        }
+
+        $xml = simplexml_load_file($file_name);
+        if (!empty(\request()->post('desc'))){
+            $xml->desc = \request()->post('desc');
+        }
+        $xml->desc = \request()->post('desc');
+        $xml->desc = \request()->post('useful');
+
+        $res = $xml->asXML($file_name);
+//        $xml->desc = \request()->post('desc');
+//        $xml->desc = \request()->post('desc');
+
+    }
     
 }
