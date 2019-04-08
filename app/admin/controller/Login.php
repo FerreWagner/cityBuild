@@ -50,7 +50,7 @@ class Login extends Base
             
             
             if (!$res){
-                $this->error('Error,Dear');
+                $this->error('登录错误');
             }elseif (password_verify($res['password'], password_hash(sha1($admin_data['password'].config('salt.password_salt')), PASSWORD_DEFAULT))){
                 
                 //admin data detail
@@ -65,7 +65,7 @@ class Login extends Base
                 return $this->redirect('admin/index/index');
                 
             }else {
-                $this->error('Error,Dear');
+                $this->error('登录错误');
             }
         }
     }

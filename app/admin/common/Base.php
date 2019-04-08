@@ -18,7 +18,7 @@ class Base extends Controller
         $action  = $request->controller().'/'.$request->action();
         //permission detail
         if (session('user_data')['role'] == config('role.role_normal') && in_array($action, config('action'))){
-            $this->error('Sorry,You are not allowed to do this.', 'index/welcome');
+            $this->error('您没有权限登录', 'index/welcome');
         }
         
         if ($request->module() == 'admin' && $request->controller() != 'Login'){    //except Login action,all admin function need validate
@@ -61,7 +61,7 @@ class Base extends Controller
     {
         //use helper function to validate
         if (empty(\session('user_name'))){
-            $this->error('Pls Login First.Dear.', 'admin/login/index');
+            $this->error('请先登录,谢谢', 'admin/login/index');
         }
     }
     
@@ -69,7 +69,7 @@ class Base extends Controller
     protected function alreadyLogin()
     {
         if (!empty(\session('user_name'))){
-            $this->error('You Already Login.Dear', 'admin/index/index');
+            $this->error('您已登录', 'admin/index/index');
         }
     }
     
