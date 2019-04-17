@@ -28,6 +28,7 @@ class Login extends Base
             $data = [
                 'username' => $param['username'],
                 'password' => md5($param['password']),
+                'createTime' => date('Y-m-d H:i:s'),
             ];
 
             $res = db('user')->insert($data);
