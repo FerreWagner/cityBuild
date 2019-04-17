@@ -79,6 +79,6 @@ class Login extends Base
     {
         Session::delete('user_name');
         Session::delete('user_data');
-        $this->success('Logout Success.Dear.', 'admin/login/index');
+        $this->success('退出成功.', 'admin/login/index');
     }
 }
