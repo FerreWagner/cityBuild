@@ -2,29 +2,38 @@
 namespace app\api\controller;
 
 use app\api\Base;
+use think\Loader;
+use think\Request;
 
 class Login extends Base
 {
     public function index()
     {
-        if (request()->isGet()){
-            return json(['code' => '200','msg' => '过分了get老铁']);
-        }elseif(request()->isPost()){
-            return json(['code' => '200','msg' => 'post老铁']);
-        }
     }
 
     /**
+     * @param Request $request
      * @return \think\response\Json
-     * 成考列表
+     * 前台用户注册
      */
-    public function studyLst()
+    public function userRegister(Request $request)
     {
-        $data = db('study')->field('major,layer,type,esystem,money')->where(['del' => 0])->order('id', 'asc')->select();
-        if (empty($data)){
-            return json(['code' => '400', 'msg' => '暂无数据']);
+        if ($request->isPost()){
+            $param    = $request->param();
+            $validate = Loader::validate('User');
+            if (!$validate->scene('userRegister')->check($request->param())){
+                $this->error($validate->getError());
+            }
+
+            $data = [
+                'username' => $param['username'],
+                'password' => md5($param['password']),
+            ];
+
+            $res = db('user')->insert($data);
+            if($res) return json(['code' => '200', 'msg' => '注册成功']);
+            return json(['code' => '99', 'msg' => '注册失败']);
         }
-        return json(['code' => '200', 'data' => $data]);
     }
 
 }
