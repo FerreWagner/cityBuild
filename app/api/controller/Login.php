@@ -27,14 +27,4 @@ class Login extends Base
         return json(['code' => '200', 'data' => $data]);
     }
 
-    /**
-     * @return \think\response\Json
-     * 网站资料
-     */
-    public function getWebData()
-    {
-        $data = db('webdata')->field('adult_desc,adult_use,adult_where,adult_time,adult_money,adult_major,adult_score,adult_query')->find(1);
-        return json(['code' => '200', 'data' => $data]);
-    }
-    
 }
