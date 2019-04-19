@@ -36,5 +36,19 @@ class Index extends Base
         $data = db('webdata')->field('adult_desc,adult_use,adult_where,adult_time,adult_money,adult_major,adult_score,adult_query')->find(1);
         return json(['code' => '200', 'data' => $data]);
     }
+
+    /**
+     * @return \think\response\Json
+     * 友链列表
+     */
+    public function getLink()
+    {
+        $data = db('link')->field('name,url')->order('sort desc')->select();
+        if ($data){
+            return json(['code' => '200', 'msg' => '获取成功', 'data' => $data]);
+        }
+        return json(['code' => '99', 'msg' => '暂无数据']);
+
+    }
     
 }
