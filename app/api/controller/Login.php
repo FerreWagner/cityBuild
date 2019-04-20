@@ -52,7 +52,7 @@ class Login extends Base
                 if ($ress){
 //                    $user_data = db('student')->where(['userid' => $ress['id']])->find();
                     $token = base64_encode($ress['password'].time()).$ress['id'];
-                    return json(['code' => '200', 'msg' => '登陆成功', 'data' => ['userid' => $ress['id'], 'token' => $token]]);
+                    return json(['code' => '200', 'msg' => '登陆成功', 'data' => ['userid' => $ress['id'], 'username' => $ress['username'], 'token' => $token]]);
                 }else{
                     return json(['code' => '99', 'msg' => '登录失败']);
                 }
