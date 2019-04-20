@@ -61,12 +61,22 @@ class Index extends Base
     public function userData(Request $request)
     {
         if ($request->isPost()){
-            $form   = request()->param();
-            $token  = base64_decode($form['token']);
-//            $token = base64_decode('ODFkYzliZGI1MmQwNGRjMjAwMzZkYmQ4MzEzZWQwNTUxNTU1NzQ0MDAyMQ==');
-            $pass   = substr($token, 0, -11);
-            $userid = substr($token, -1);
-            $data = db('user')->where(['id' => $userid, 'password' => $pass])->find();
+            $form     = request()->param();
+            //TODO 暂未封装
+            $time     = substr($form['token'], -10);
+            $token    = base64_decode(substr($form['token'], 0, -10));
+            $salt     = substr($token, 0, 21);
+            $old_time = substr($token, 21, 10);
+            $id       = substr($token, 31, 1);
+            $pass     = substr($token, 32);
+
+//            echo base64_encode(config('salt.url_salt').time().'1'.'81dc9bdb52d04dc20036dbd8313ed055');die;
+            //time check
+            if ($time + 86399 < $old_time || $time > time()) return json(['code' => '99', 'msg' => '您已超时']);
+            //$salt check
+            if ($salt != config('salt.url_salt')) return [['code' => '99', 'msg' => '非法操作']];
+            //data check
+            $data   = db('user')->where(['id' => $id, 'password' => $pass])->find();
             if ($data){
                 return json(['code' => '200', 'msg' => '请求成功', 'data' => $data]);
             }
