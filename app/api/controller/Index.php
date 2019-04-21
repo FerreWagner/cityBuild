@@ -29,6 +29,32 @@ class Index extends Base
         return json(['code' => '200', 'data' => $data]);
     }
 
+    public function levelLst()
+    {
+        $data = db('study')->field('layer')->where(['del' => 0])->group('layer')->select();
+        $datas = [];
+        foreach ($data as $k => $v){
+            $datas[] = $v['layer'];
+        }
+        if (empty($data)){
+            return json(['code' => '400', 'msg' => '暂无数据']);
+        }
+        return json(['code' => '200', 'msg' => '获取成功', 'data' => $datas]);
+    }
+
+    public function majorLst()
+    {
+        $data = db('study')->field('major')->where(['del' => 0])->group('major')->select();
+        $datas = [];
+        foreach ($data as $k => $v){
+            $datas[] = $v['major'];
+        }
+        if (empty($data)){
+            return json(['code' => '400', 'msg' => '暂无数据']);
+        }
+        return json(['code' => '200', 'msg' => '获取成功', 'data' => $datas]);
+    }
+
     /**
      * @return \think\response\Json
      * 网站资料

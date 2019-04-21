@@ -31,8 +31,8 @@ class Login extends Base
                 'createTime' => date('Y-m-d H:i:s'),
             ];
 
-            $res = db('user')->insert($data);
-            if($res) return json(['code' => '200', 'msg' => '注册成功']);
+            $res = db('user')->insertGetId($data);
+            if($res) return json(['code' => '200', 'msg' => '注册成功', 'userId' => $res]);
             return json(['code' => '99', 'msg' => '注册失败']);
         }
     }

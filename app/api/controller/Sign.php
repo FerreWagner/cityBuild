@@ -21,7 +21,7 @@ class Sign extends Base
             $param = $request->param();
             $res   = db('student')->insert($param);
             if($res) return json(['code' => '200', 'msg' => '报名成功']);
-            return json(['code' => '99', 'msg' => '报名失败,请认真填写']);
+            return json(['code' => '99', 'msg' => '报名失败,请认真填写',]);
         }
     }
 
