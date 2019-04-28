@@ -18,6 +18,7 @@ class Webdata extends Base
         //config update
         if ($request->isPost()) {
             $data = $request->param();
+            if (isset($data['file'])) unset($data['file']);
             $res  = WebdataModel::update($data, ['id' => 1]);
             $res ? $this->success('设置成功') : $this->error('更新失败,请稍后重试');
         }

@@ -20,49 +20,49 @@
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>成考简介</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_desc" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_desc}</textarea>
+                                <textarea name="adult_desc" id="demo1" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_desc}</textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>成考作用</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_use" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_use}</textarea>
+                                <textarea name="adult_use" id="demo2" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_use}</textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>成人高考报考条件</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_where" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_where}</textarea>
+                                <textarea name="adult_where" id="demo3" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_where}</textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>报名时间</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_time" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_time}</textarea>
+                                <textarea name="adult_time" id="demo4" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_time}</textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>报考费用</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_money" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_money}</textarea>
+                                <textarea name="adult_money" id="demo5" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_money}</textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>考试科目</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_major" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_major}</textarea>
+                                <textarea name="adult_major" id="demo6" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_major}</textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>录取分数</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_score" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_score}</textarea>
+                                <textarea name="adult_score" id="demo7" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_score}</textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label"><b>录取查询</b></label>
                             <div class="layui-input-block">
-                                <textarea name="adult_query" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_query}</textarea>
+                                <textarea name="adult_query" id="demo8" placeholder="请输入内容" class="layui-textarea">{$webdata.adult_query}</textarea>
                             </div>
                         </div>
 
@@ -89,6 +89,39 @@
               form = layui.form()
 
               })
+
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo1'); //建立编辑器
+            });
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo2'); //建立编辑器
+            });
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo3'); //建立编辑器
+            });
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo4'); //建立编辑器
+            });
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo5'); //建立编辑器
+            });
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo6'); //建立编辑器
+            });
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo7'); //建立编辑器
+            });
+            layui.use('layedit', function(){
+                var layedit = layui.layedit;
+                layedit.build('demo8'); //建立编辑器
+            });
             </script>
 
     </body>
